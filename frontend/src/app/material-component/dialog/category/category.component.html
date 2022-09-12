@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+      <span class="titla-center">{{dialogData.action}} Category</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="categoryForm">
+        <div fxFlex fxLayout = "column">
+        <div fxLayout = "row wrap">
+            <mat-form-field appearance="fill" fxFlex>
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" >
+                <mat-error *ngIf="categoryForm.controls.name.invalid && (categoryForm.controls.name.dirty || categoryForm.controls.name.touched)">
+                    <span *ngIf="categoryForm.controls.name.errors.required">This field is mandatory.</span>
+                </mat-error>
+            </mat-form-field>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+    <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()">{{dialogData.action}}</button>
+    <button mat-raised-button color="primary" mat-dialog-close> close</button>
+</mat-dialog-actions>

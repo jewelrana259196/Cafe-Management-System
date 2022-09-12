@@ -1,0 +1,65 @@
+<mat-toolbar color = "primary">
+    <mat-toolbar-row fxlayout="row">
+        <span class="title-center">Login</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+<hr>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="loginForm">
+        <div fxFLex fxLayout="column">
+            <p>
+            <mat-form-field fxFlex appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" required />
+                <mat-error
+                  *ngIf="
+                  loginForm.controls.email.invalid &&
+                  (loginForm.controls.email.dirty ||
+                  loginForm.controls.email.touched)
+                  "
+                >
+                  <span *ngIf="loginForm.controls.email.errors.required"
+                    >This field is mandatory.</span
+                  >
+                  <span *ngIf="loginForm.controls.email.errors.patter"
+                    >This field is invalid.</span
+                  >
+                </mat-error>
+              </mat-form-field>
+            </p>
+
+              <p>
+                <mat-form-field fxFlex appearance="outline">
+                  <mat-label>Password</mat-label>
+                  <input matInput formControlName="password" type="password" required />
+                  <mat-error
+                    *ngIf="
+                    loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)
+                    "
+                  >
+                    <span *ngIf="loginForm.controls.password.errors.required"
+                      >This field is mandatory.</span
+                    >
+                    <span *ngIf="loginForm.controls.password.errors.patter"
+                      >This field is invalid.</span
+                    >
+                  </mat-error>
+                </mat-form-field>
+              </p>
+
+        </div>
+    </form>
+</mat-dialog-content>  
+
+<mat-dialog-actions align="center">
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      (click)="handleSubmit()"
+      [disabled]="!loginForm.dirty"
+    >
+      Login
+    </button>
+    <button mat-raised-button color="primary" mat-dialog-close>Close</button>
+  </mat-dialog-actions>
